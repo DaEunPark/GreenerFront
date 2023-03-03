@@ -6,9 +6,9 @@
             </div>
             <div class="card-body">
                 <div class="row upper">
-                    <span><i class="fa fa-check-circle-o"></i> Shopping bag</span>
-                    <span><i class="fa fa-check-circle-o"></i> Order details</span>
-                    <span id="payment"><span id="three">3</span>Payment</span>
+                    <span><i class="fa fa-check-circle-o"></i>장바구니</span>
+                    <span><i class="fa fa-check-circle-o"></i>주문 상세</span>
+                    <span id="payment"><span id="three">3</span>결제 방식</span>
                 </div>
                 <div class="row">
                     <div class="col-md-7">
