@@ -56,6 +56,9 @@ export default {
         }
         else {
           this.emitter.emit('trans', this.buyerInfo.b_name)
+          this.emitter.emit('transInfo', this.buyerInfo)
+          // this.$session.set('buyer_info', this.buyerInfo)
+          sessionStorage.setItem('buyer_info', this.buyerInfo.b_id)
           this.$router.replace('/')
         }
       }).catch((err) => {
