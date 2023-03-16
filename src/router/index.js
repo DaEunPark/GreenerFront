@@ -27,6 +27,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Homepage from '../views/HomepageComp.vue'
 import CScustomer from '../views/CScustomer'
 import PaymentsPage from '../views/PaymentsPage.vue'
+import CartPage from '../views/CartPage.vue'
 
 const routes = [
   { path: '/', name: 'Homepage', component: Homepage },
@@ -42,6 +43,11 @@ const routes = [
     path: '/payments',
     name: 'PaymentPage',
     component: PaymentsPage
+   },
+   {
+    path: '/cart',
+    name: 'CartPage',
+    component: CartPage
    },
    {
     path: '/paymentspagetest',
