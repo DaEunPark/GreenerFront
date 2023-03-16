@@ -1,116 +1,405 @@
-
 <template>
-    <br/><br/>
-    <div class="container">
-        <form class="form-horizontal">
-            <div class="form-group">
-                <div>
-                    <h2 align="center">결제하기</h2>
-                </div>
-            </div><br/>
-            <div class="form-group">
-                <div>
-                    <h5 align="center">{{  }} 개의 제품 {{  }} 원 </h5>
-                </div>
-            </div><br/><br/>
-            <hr/>
-            <div class="form-group">
-                <div>
-                    <h2 align="left">장바구니</h2>
-                </div>
-            </div><br/>
-            <div class="form-group">
-                <div class="col-sm-8">
-                    <h5 align="left">도착 예정일: </h5>
-                </div>
-            </div>
-            <hr/>
-            <table>
-                <tbody>
-                    <tr>
-                        <td>상품 금액</td>
-                        <td> {{  }}</td>
-                    </tr>
-                    <tr>
-                        <td>배송비</td>
-                        <td>{{  }}</td>
-                    </tr>
-                    <tr>
-                        <td><b>총 결제 금액</b></td>
-                        <td><b>{{  }}</b></td>
-                    </tr>
-                </tbody>
-            </table>
-            <hr/>
-            <div class="form-group">
-                <div>
-                    <h2 align="left">배송 옵션</h2>
-                </div>
-            </div><br/>
-            <table id="deliverAddress">
-                <thead>
-                    <th>배송 주소</th>
-                </thead>
-                <tbody>
-                    <tr>{{  }}</tr>
-                    <tr>{{  }}</tr>
-                    <tr>{{  }}</tr>
-                    <tr>{{  }}</tr>
-                </tbody>
-            </table>
-            <hr/>
-            <div class="form-group">
-                <div>
-                    <h2 align="left">결제</h2>
-                </div>
-            </div><br/>
-            <div class="form-group">
-                <div class="col-sm-8">
-                    <h4 align="left">결제 수단 선택</h4>
-                </div>
-            </div>
-            <div class="paymentOpt" align="left">
-                <label><input type="radio" v-bind:value="payVal1" v-model="picked"/>&nbsp;카카오페이</label><br/>
-                <label><input type="radio" v-bind:value="payVal2" v-model="picked"/>&nbsp;신용카드</label><br/>
-                <label><input type="radio" v-bind:value="payVal3" v-model="picked"/>&nbsp;네이버페이</label><br/>
-                <label><input type="radio" v-bind:value="payVal4" v-model="picked"/>&nbsp;페이코</label><br/>
-                <label><input type="radio" v-bind:value="payVal5" v-model="picked"/>&nbsp;실시간 계좌이체</label><br/>
-            </div><br/><br/>
-            <p align="left">
-                <button type="button" class="btn btn-primary">
-                    결제 수단 선택 <span>{{ picked }}</span>
-                </button>
-            </p>
-        </form>
-        
-    </div>
-    
-</template>
+    <div class=" container-fluid my-5 ">
+        <div class="row justify-content-center ">
+            <div class="col-xl-10">
+                <div class="card shadow-lg ">
+                    <div class="row p-2 mt-3 justify-content-between mx-sm-2">
 
-<script>
-export default {
-    data() {
-        return {            
-            payVal1 : 'kakao',
-            payVal2 : 'credit',
-            payVal3 : 'naver',
-            payVal4 : 'payco',
-            payVal5 : 'account',
-            picked: 'kakao'
+                    </div>
+                    <div class="row  mx-auto justify-content-center text-center">
+                        <div class="col-12 mt-3 ">
+                            <nav aria-label="breadcrumb" class="second ">
+                                <ol class="breadcrumb indigo lighten-6 first  ">
+                                    <h2 class="card-title ">결제 상세</h2>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                
+                    <div class="row justify-content-around">
+                        <div class="col-md-5">
+                            <div class="card border-0">
+                                <div class="card-header pb-0">
+                                    <!-- <h2 class="card-title space ">결제 상세</h2> -->
+                                    <p class="card-text text-muted mt-4  space">배송지 주소</p>
+                                    <hr class="my-0">
+                                </div>
+                                <div class="card-body">
+                                    <div class="row justify-content-between">
+                                       
+                                        <div>
+                                            <div class="mt-4 mb-4">
+                                            <!-- <h6 class="text-uppercase">배송지</h6> -->
+                                                <div class="row mt-3">
+                                                    <div class="col-md-6">
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_name"> <span>이름</span> </div>                                     
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-6">
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address1"> <span>우편번호</span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-md-12">
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address2"> <span>주소</span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">                                              
+                                                    <div class="col-md-12">
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address3"> <span>상세주소</span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">                                              
+                                                    <div class="col-md-12">
+                                                        <div class="inputbox mt-3 mr-2"> <input type="email" name="name" class="form-control" v-model="buyer_info.b_email"> <span>이메일</span> </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">                                              
+                                                    <div class="col-md-12">
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" maxlength="13" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');" name="name" class="form-control" v-model="buyer_info.b_phone"> <span>연락처</span> </div>
+                                                    </div>
+                                                </div>
+    
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row mt-4">
+                                        <div class="col"><p class="text-muted mb-2">결제방식</p><hr class="mt-0"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NAME" class="small text-muted mb-1">카드 이름</label>
+                                        <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="홍길동의 카드">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="NAME" class="small text-muted mb-1">카드 번호</label>
+                                        <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" maxlength="19" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})$/, '$1-$2-$3-$4').replace(/(\-{1,2})$/g, '');" placeholder="4534-5555-5555-5555">
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-6 pr-sm-2">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1">만료기한</label>
+                                                <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" maxlength="5" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{0,2})(\d{0,2})$/g, '$1/$2').replace(/(\-{1,2})$/g, '');" aria-describedby="helpId" placeholder="06/21">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1">CVC</label>
+                                                <input type="text" class="form-control form-control-sm" maxlength="3" name="NAME" id="NAME" aria-describedby="helpId" placeholder="183">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br/>
+                                    <div class="row mb-md-5">
+                                        <div class="col">
+                                            <button type="button" name="" id="" class="btn  btn-lg btn-block ">카드 정보 입력 완료</button>
+                                        </div>
+                                    </div>    
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <div class="card border-0 ">
+                                <div class="card-header pb-0">
+                                    <p class="card-text text-muted mt-md-4  mb-2 space">주문 내용</p>
+                                    <hr class="my-2">
+                                </div>
+                                <div class="card-body pt-0">
+                                    <div class="ordercontent" v-for="cart in cart_info" :key="cart.p_name" >
+                                        <div class="row  justify-content-between">
+                                            <div class="col-auto col-md-7">
+                                                <div class="media flex-column flex-sm-row">
+                                                    <!-- 상품 이미지 -->
+                                                    <img class=" img-fluid" v-bind:src="cart.p_img" width="62" height="62">
+                                                    <div class="media-body  my-auto">
+                                                        <div class="row ">
+                                                            <!-- 상품명 -->
+                                                            <div class="col"><p class="mb-0"><b>{{ cart.p_name }}</b></p><small class="text-muted"> {{ cart.p_price }} 원</small></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 주문 개수 -->
+                                            <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed">{{ cart.o_count }}</p></div>
+                                            <!-- 가격 -->
+                                            <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{ cart.o_total_price }} 원</b></p></div>
+                                        </div>
+                                        <hr class="my-2">
+                                    </div>      <!-- <div class="ordercontent" v-for="cart in cart_info" :key="cart.p_name" > -->  
+    
+    
+                                    <!-- 총 합계 -->
+                                    <div class="row "> 
+                                        <div class="col">
+                                            <div class="row justify-content-between">
+                                                <div class="col-4"><p class="mb-1"><b>주문 금액</b></p></div>
+                                                <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ orderAmount }} 원</b></p></div>
+                                            </div>
+                                            <div class="row justify-content-between">
+                                                <div class="col-4"><p class="mb-1"><b>배송비</b></p></div>
+                                                <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ shipping }} 원</b></p></div>
+                                            </div>
+                                            <div class="row justify-content-between">
+                                                <div class="col-4"><p ><b>총 금액</b></p></div>
+                                                <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{ totalAmount }} 원</b></p> </div>
+                                            </div><hr class="my-0">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5 mt-4 ">
+                                        <div class="col-md-7 col-lg-6 mx-auto"><button type="button" class="btn btn-block btn-outline-primary btn-lg">ADD GIFT CODE</button></div>
+                                    </div>
+                                </div> <!-- <div class="card-body pt-0"> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </template>
+    
+    <script>
+    
+    export default {
+       data() {
+            return {
+                name: '',
+                address1: '',
+                address2: '',
+                address3: '',
+                email: '',
+                bCartInfo: {},
+                tempInfo: '',
+                buyer_info: [],
+                cart_info: [],
+                paymentInfo: [],
+                orderAmount: 2000,
+                shipping: 2500,
+                totalAmount: 0
+            }
+        },
+        mounted() {
+            
+        },
+        created() {
+            this.getCartInfo()
+        },
+        methods: {
+            getCartInfo() {
+    
+                this.getPaymentInfo(sessionStorage.getItem('buyer_info'))
+    
+            },async getPaymentInfo(bId) {
+                await this.$axios.post(this.$serverUrl+'/payment/paymentInfo', {
+                    b_id: bId
+                }).then((res) => {
+
+    
+                    this.paymentInfo = res.data
+                    this.buyer_info = this.paymentInfo.bInfo
+                    this.cart_info = this.paymentInfo.cartList
+                    // console.log(this.cart_info[0].p_number)
+                    this.orderAmount = 0
+                    for (var i = 0; i < this.cart_info.length; i++) {
+                        
+                        this.orderAmount += this.cart_info[i].o_total_price
+                    }
+                    this.totalAmount = this.orderAmount + this.shipping
+
+                }).catch((err) => {
+                    console.log(err)
+                    if (err.message.indexOf('Network Error') > -1) {
+                    alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+                    }
+                })
+    
+            }, autoHyphen(target) {
+                target.value = target.value
+                .replace(/[^0-9]/g, '')
+                .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+            }
+    
         }
     }
-}
-</script>
-
-<style>
-    h1, h2, h3 {
-        padding-left: 0;
-        margin-left: 0;
-        position: relative;
+    </script>
+    
+    
+    <style scoped>
+    body{
+        background: linear-gradient(110deg, #BBDEFB 60%,#42A5F5  60%);                        
     }
-
-    table {
-        text-align: left;
+            
+    .shop{
+        font-size: 10px;
     }
     
-</style>
+    .space{
+        letter-spacing: 0.8px !important;
+    }
+    
+    .second a:hover {
+        color: rgb(92, 92, 92) ;
+    }
+    
+    .active-2 {
+        color: rgb(92, 92, 92) 
+    }
+    
+    
+    .breadcrumb>li+li:before {
+        content: "" !important
+    }
+    
+    .breadcrumb {
+        padding: 0px;
+        font-size: 10px;
+        color: #191c20 !important;
+    }
+    
+    .first {
+        background-color: white ;
+    }
+    
+    a {
+        text-decoration: none !important;
+        color: #aaa ;
+    }
+    
+    .btn-lg,.form-control-sm:focus,
+    .form-control-sm:active,
+    a:focus,a:active {
+        outline: none !important;
+        box-shadow: none !important
+    }
+    
+    .form-control-sm:focus{
+        border:1.5px solid #4bb8a9 ; 
+    }
+    
+    .btn-group-lg>.btn, .btn-lg {
+        padding: .5rem 0.1rem;
+        font-size: 1rem;
+        border-radius: 0;
+        color: white !important;
+        background-color: #4bb8a9;
+        height: 2.8rem !important;
+        border-radius: 0.2rem !important;
+    }
+    
+    .btn-group-lg>.btn:hover, .btn-lg:hover {
+        background-color: #26A69A;
+    }
+    
+    .btn-outline-primary{
+        background-color: #fff !important;
+        color:#4bb8a9 !important;
+        border-radius: 0.2rem !important;   
+        border:1px solid #4bb8a9;
+    }
+    
+    .btn-outline-primary:hover{
+        background-color:#4bb8a9  !important;
+        color:#fff !important;
+        border:1px solid #4bb8a9;
+    }
+    
+    .card-2{
+        margin-top: 40px !important;
+    }
+    
+    .card-header{
+        background-color: #fff;
+        border-bottom:0px solid #aaaa !important;
+    }
+    
+    p{
+        font-size: 13px ;
+    }
+            
+    .small{
+        font-size: 9px !important;
+    }
+    
+    .form-control-sm {
+        height: calc(2.2em + .5rem + 2px);
+        font-size: .875rem;
+        line-height: 1.5;
+        border-radius: 0;   
+    }
+    
+    .cursor-pointer{
+        cursor: pointer;
+    }
+    
+    .boxed {
+        padding: 0px 8px 0 8px ;
+        background-color: #4bb8a9;
+        color: white;
+    }
+    
+    .boxed-1{
+        padding: 0px 8px 0 8px ;
+        color: black !important;
+        border: 1px solid #aaaa;
+    }
+    
+    .bell{
+        opacity: 0.5;
+        cursor: pointer;
+    }
+    
+    @media (max-width: 767px) {
+        .breadcrumb-item+.breadcrumb-item {
+            padding-left: 0
+        }
+    }
+    
+    .inputbox {
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%
+    }
+    
+    .inputbox span {
+    position: absolute;
+    top: 7px;
+    left: 11px;
+    transition: 0.5s
+    }
+    
+    .inputbox i {
+    position: absolute;
+    top: 13px;
+    right: 8px;
+    transition: 0.5s;
+    color: #3F51B5
+    }
+    
+    .form-control {
+    border-bottom: 2px solid #eee !important;
+    border: none;
+    font-weight: 600
+    }
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0
+    }
+    
+    .inputbox input:focus~span {
+    transform: translateX(-0px) translateY(-15px);
+    font-size: 12px
+    }
+    
+    .inputbox input:valid~span {
+    transform: translateX(-0px) translateY(-15px);
+    font-size: 12px
+    }
+    
+    </style>
+    
+    

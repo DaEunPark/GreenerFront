@@ -4,15 +4,15 @@
       <div class="login member-login">
         <h1>로그인</h1>
         <form>
-          <input type="text" @click="removeRedBorder('#id')" id="id" maxlength="12" v-model="id" placeholder="아이디 / ID"/>
-          <input type="password" @click="removeRedBorder('#pw')" id="pw" maxlength="12" v-model="pwd" placeholder="비밀번호 / PW" autoComplete="on"/>
+          <input type="text" @click="removeRedBorder('#id')" id="id" maxlength="12" v-model="id" placeholder="아이디 / ID" v-focus/>
+          <input type="password" @click="removeRedBorder('#pw')" @keyup.enter="loginAfterFormCheck()" id="pw" maxlength="12" v-model="pwd" placeholder="비밀번호 / PW" autoComplete="on"/>
         </form>
         <div class="options">
           <input type="checkbox">로그인 유지<br>
           <a href="#">아이디/비밀번호 찾기</a>
         </div>
         <button type="button" @click="loginAfterFormCheck()" id="login_btn" style="background-color: green;">로그인</button>
-        <a href="http://localhost:8086/buyer/signin"><button id="join_btn">가입하기</button></a>
+        <a href="http://localhost:8086/buyer/signup"><button id="join_btn">가입하기</button></a>
       </div>
 
       <div class="d-flex">
@@ -46,20 +46,16 @@ export default {
         b_id: this.id,
         b_pwd: this.pwd
       }).then((res) => {
-        console.log('fgsfdf'+res)
-        console.log('fgsfdf'+res.data)
         this.buyerInfo=res.data
-        console.log(this.buyerInfo.b_name)
         if(this.buyerInfo.b_name === undefined){
           this.pwd=''
           alert('아이디 또는 비밀번호를 잘못 입력했습니다. 입력하신 내용을 다시 확인해주세요')
         }
         else {
-          this.emitter.emit('trans', this.buyerInfo.b_name)
+          this.$store.commit('loginPlease', this.buyerInfo)
           this.$router.replace('/')
         }
       }).catch((err) => {
-        console.log(err)
         if (err.message.indexOf('Network Error') > -1) {
           alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
         }
@@ -81,6 +77,13 @@ export default {
     removeRedBorder(id) {
       if(document.querySelector(id).style.borderColor==='red'){
         document.querySelector(id).style.borderColor='revert'
+      }
+    }
+  },
+  directives: {
+    focus: {
+      mounted(el){
+        el.focus()
       }
     }
   }
