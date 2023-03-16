@@ -1,10 +1,6 @@
 <template>
-    <!-- 
-    Bootstrap docs: https://getbootstrap.com/docs
-    Get more snippet on https://bootstraptor.com/snippets
-    -->
-
-    <section class="pt-5 pb-5">
+<!-- 
+<section class="pt-5 pb-5">
         <div class="container">
             <div class="row w-100">
                 <div class="col-lg-12 col-md-12 col-12">
@@ -14,18 +10,18 @@
                     <table id="shoppingCart" class="table table-condensed table-responsive">
                         <thead>
                             <tr>
-                                <th style="width:60%">Product</th>
-                                <th style="width:12%">Price</th>
-                                <th style="width:10%">Quantity</th>
+                                <th style="width:60%">제품</th>
+                                <th style="width:12%">상품금액</th>
+                                <th style="width:10%">주문 수량</th>
                                 <th style="width:16%"></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr v-for="i in 3" :key="i">
                                 <td data-th="Product">
                                     <div class="row">
                                         <div class="col-md-3 text-left">
-                                            <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                            <img src="https://attach.choroc.com/web/goods/1/img1/006964_20210414111458.jpg" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
                                         </div>
                                         <div class="col-md-9 text-left mt-sm-2">
                                             <h4>Product Name</h4>
@@ -33,9 +29,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td data-th="Price">$49.00</td>
+                                <td data-th="Price">49.00 원</td>
                                 <td data-th="Quantity">
-                                    <input type="number" class="form-control form-control-lg text-center" value="1">
+                                    <input type="number" class="form-control form-control-lg text-center" min="1" value="1">
                                 </td>
                                 <td class="actions" data-th="">
                                     <div class="text-right">
@@ -46,56 +42,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td data-th="Product">
-                                    <div class="row">
-                                        <div class="col-md-3 text-left">
-                                            <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
-                                        </div>
-                                        <div class="col-md-9 text-left mt-sm-2">
-                                            <h4>Product Name</h4>
-                                            <p class="font-weight-light">Brand &amp; Name</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-th="Price">$49.00</td>
-                                <td data-th="Quantity">
-                                    <input type="number" class="form-control form-control-lg text-center" value="1">
-                                </td>
-                                <td class="actions" data-th="">
-                                    <div class="text-right">
 
-                                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                            <font-awesome-icon icon="fas fa-trash"/>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td data-th="Product">
-                                    <div class="row">
-                                        <div class="col-md-3 text-left">
-                                            <img src="https://via.placeholder.com/250x250/5fa9f8/ffffff" alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
-                                        </div>
-                                        <div class="col-md-9 text-left mt-sm-2">
-                                            <h4>Product Name</h4>
-                                            <p class="font-weight-light">Brand &amp; Name</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td data-th="Price">$49.00</td>
-                                <td data-th="Quantity">
-                                    <input type="number" class="form-control form-control-lg text-center" value="1">
-                                </td>
-                                <td class="actions" data-th="">
-                                    <div class="text-right">
-
-                                        <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                            <font-awesome-icon icon="fas fa-trash"/>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
                     <div class="float-right text-right">
@@ -106,7 +53,7 @@
             </div>
             <div class="row mt-4 d-flex align-items-center">
                 <div class="col-sm-6 order-md-2 text-right">
-                    <a href="#" class="btn btn-primary mb-4 btn-lg pl-5 pr-5">Checkout</a>
+                    <a href="#" class="btn btn-success mb-4 btn-lg pl-5 pr-5">총 주문하기</a>
                 </div>
                 <div class="col-sm-6 mb-3 mb-m-1 order-md-1 text-md-left">
                     <a href="/">
@@ -114,156 +61,540 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> 
+     -->
+    <br/><br/>
+    <div class="container pb-5 mb-2">
+        <div class="row">
+            <aside class="col-lg-9">
+                <div class="card">
+                    <div class="">
+                        <div id="cart-item" v-for="i in 6" :key="i">
+                            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><font-awesome-icon icon="fa fa-times" /></span>
+                                <div class="px-4 my-3">
+                                    <a class="cart-item-product" href="#">
+                                        <div class="cart-item-product-thumb"><img src="https://attach.choroc.com/web/goods/1/img1/006964_20210414111458.jpg" alt="Product"></div>
+                                        <div class="cart-item-product-info">
+                                            <h4 class="cart-item-product-title">Canon EOS M50 Mirrorless Casdfsdfdsffmera</h4><span><strong>Type:</strong> Mirrorless</span><span><strong>Color:</strong> Black</span>
+                                        </div>
+                                    </a>
+                                    </div>
+                                    <div class="px-3 my-3 text-center">
+                                        <div class="cart-item-label">수량</div>
+                                        <div class="count-input">
+                                        <input type="number" class="form-control form-control-lg text-center" min="1" value="1">
+                                        </div>
+                                    </div>
+                                    <div class="px-3 my-3 text-center">
+                                        <div class="cart-item-label">구매금액</div><span class="text-xl font-weight-medium">$910.00</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </aside>
+            <aside class="col-lg-3">
+                <div class="card">
+                    <div class="card-body">
+                        <dl class="dlist-align">
+                            <dt>Total price:</dt>
+                            <dd class="text-right ml-3">$69.97</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Discount:</dt>
+                            <dd class="text-right text-danger ml-3">- $10.00</dd>
+                        </dl>
+                        <dl class="dlist-align">
+                            <dt>Total:</dt>
+                            <dd class="text-right text-dark b ml-3"><strong>$59.97</strong></dd>
+                        </dl>
+                        <hr> <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> <a href="#" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+
+
+    <!-- <div class="container pb-5 mb-2">
+        <br/><br/>
+
+        <div id="cart-item" v-for="i in 3" :key="i">
+            <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><font-awesome-icon icon="fa fa-times" /></span>
+                <div class="px-4 my-3">
+                    <a class="cart-item-product" href="#">
+                        <div class="cart-item-product-thumb"><img src="https://attach.choroc.com/web/goods/1/img1/006964_20210414111458.jpg" alt="Product"></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title">Canon EOS M50 Mirrorless Casdfsdfdsffmera</h4><span><strong>Type:</strong> Mirrorless</span><span><strong>Color:</strong> Black</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="px-3 my-3 text-center">
+                    <div class="cart-item-label">Quantity</div>
+                    <div class="count-input">
+                    <input type="number" class="form-control form-control-lg text-center" min="1" value="1">
+                    </div>
+                </div>
+                <div class="px-3 my-3 text-center">
+                    <div class="cart-item-label">Subtotal</div><span class="text-xl font-weight-medium">$910.00</span>
+                </div>
+
+            </div>
+        </div>
+    
+
+        <div class="px-3 my-3 text-start">
+            <div class="py-2">
+                <span class="fw-bold d-inline-block align-middle text-sm text-muted font-weight-medium text-uppercase mr-2">주문금액: &nbsp;</span>
+                <span class="d-inline-block align-middle text-xl font-weight-medium">$188.50</span>
+            </div>
+            <div class="py-2">
+                <span class="fw-bold d-inline-block align-middle text-sm text-muted font-weight-medium text-uppercase mr-2">배송비: &nbsp;</span>
+                <span class="d-inline-block align-middle text-xl font-weight-medium">$188.50</span>
+            </div>
+            <div class="py-2">
+                <span class="fw-bold d-inline-block align-middle text-sm text-muted font-weight-medium text-uppercase mr-2">총 주문금액: &nbsp;</span>
+                <span class="d-inline-block align-middle text-xl font-weight-medium">$188.50</span>
+            </div>
+        </div>
+
+        <hr class="my-2">
+        <div class="row pt-3 pb-5 mb-2">
+            <div class="col-sm-6 mb-3"><a class="btn btn-style-1 btn-secondary btn-block" href="#"><font-awesome-icon icon="fa fe-icon-refresh-ccw"/>&nbsp;Update Cart</a></div>
+            <div class="col-sm-6 mb-3"><a class="btn btn-style-1 btn-success btn-block" href="#"><font-awesome-icon icon="fa fa-credit-card"/>&nbsp;&nbsp;주문하기</a></div>
+        </div>       
+    </div> -->
+
 </template>
 
 <style scoped>
-/* body{
-    background: #ddd;
-    min-height: 100vh;
-    vertical-align: middle;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body{background-color: #eeeeee;font-family: 'Open Sans',serif;font-size: 14px}
+.container-fluid{margin-top:70px}.card-body{-ms-flex: 1 1 auto;flex: 1 1 auto;padding: 1.40rem}
+.img-sm{width: 80px;height: 80px}.itemside .info{padding-left: 15px;padding-right: 7px}
+.table-shopping-cart .price-wrap{line-height: 1.2}
+.table-shopping-cart .price{font-weight: bold;margin-right: 5px;display: block}
+.text-muted{color: #969696 !important}
+a{text-decoration: none !important}
+.card { 
+    position: relative;
+    display: -ms-flexbox;
     display: flex;
-    font-family: sans-serif;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
-.title{
-    margin-bottom: 5vh;
-}
-.card{
-    margin: auto;
-    max-width: 950px;
-    width: 90%;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1rem;
-    border: transparent;
-}
-@media(max-width:767px){
-    .card{
-        margin: 3vh auto;
-    }
-}
-.cart{
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
     background-color: #fff;
-    padding: 4vh 5vh;
-    border-bottom-left-radius: 1rem;
-    border-top-left-radius: 1rem;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: 0px}
+    .itemside{position: relative;display: -webkit-box;display: -ms-flexbox;display: flex;width: 100%}
+    .dlist-align{display: -webkit-box;display: -ms-flexbox;display: flex}
+    [class*="dlist-"]{margin-bottom: 5px}
+    .coupon{border-radius: 1px}
+    .price{font-weight: 600;color: #212529}
+    .btn.btn-out{outline: 1px solid #fff;outline-offset: -5px}
+    .btn-main{border-radius: 2px;text-transform: capitalize;font-size: 15px;padding: 10px 19px;cursor: pointer;color: #fff;width: 100%}
+    .btn-light{color: #ffffff;background-color: #F44336;border-color: #f8f9fa;font-size: 12px}
+    .btn-light:hover{color: #ffffff;background-color: #F44336;border-color: #F44336}
+    .btn-apply{font-size: 11px}
+
+</style>
+
+<style scoped>
+body{
+    margin-top:20px;
+    background:#eee;
 }
-@media(max-width:767px){
-    .cart{
-        padding: 4vh;
-        border-bottom-left-radius: unset;
-        border-top-right-radius: 1rem;
-    }
+.product-card {
+  position: relative;
+  max-width: 380px;
+  padding-top: 12px;
+  padding-bottom: 43px;
+  transition: all 0.35s;
+  border: 1px solid #e7e7e7;
 }
-.summary{
-    background-color: #ddd;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 4vh;
-    color: rgb(65, 65, 65);
+.product-card .product-head {
+  padding: 0 15px 8px;
 }
-@media(max-width:767px){
-    .summary{
-    border-top-right-radius: unset;
-    border-bottom-left-radius: 1rem;
-    }
+.product-card .product-head .badge {
+  margin: 0;
 }
-.summary .col-2{
-    padding: 0;
+.product-card .product-thumb {
+  display: block;
 }
-.summary .col-10
-{
-    padding: 0;
-}.row{
-    margin: 0;
+.product-card .product-thumb > img {
+  display: block;
+  width: 100%;
 }
-.title b{
-    font-size: 1.5rem;
+.product-card .product-card-body {
+  padding: 0 20px;
+  text-align: center;
 }
-.main{
-    margin: 0;
-    padding: 2vh 0;
+.product-card .product-meta {
+  display: block;
+  padding: 12px 0 2px;
+  transition: color 0.25s;
+  color: rgba(140, 140, 140, .75);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.product-card .product-meta:hover {
+  color: #8c8c8c;
+}
+.product-card .product-title {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.product-card .product-title > a {
+  transition: color 0.3s;
+  color: #343b43;
+  text-decoration: none;
+}
+.product-card .product-title > a:hover {
+  color: #ac32e4;
+}
+.product-card .product-price {
+  display: block;
+  color: #404040;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: normal;
+}
+.product-card .product-price > del {
+  margin-right: 6px;
+  color: rgba(140, 140, 140, .75);
+}
+.product-card .product-buttons-wrap {
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 100%;
+}
+.product-card .product-buttons {
+  display: table;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .11);
+}
+.product-card .product-button {
+  display: table-cell;
+  position: relative;
+  width: 50px;
+  height: 40px;
+  border-right: 1px solid rgba(231, 231, 231, .6);
+}
+.product-card .product-button:last-child {
+  border-right: 0;
+}
+.product-card .product-button > a {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s;
+  color: #404040;
+  font-size: 16px;
+  line-height: 40px;
+  text-align: center;
+  text-decoration: none;
+}
+.product-card .product-button > a:hover {
+  background-color: #ac32e4;
+  color: #fff;
+}
+.product-card:hover {
+  border-color: transparent;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+}
+.product-category-card {
+  display: block;
+  max-width: 400px;
+  text-align: center;
+  text-decoration: none !important;
+}
+.product-category-card .product-category-card-thumb {
+  display: table;
+  width: 100%;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+}
+.product-category-card .product-category-card-body {
+  padding: 20px;
+  padding-bottom: 28px;
+}
+.product-category-card .main-img, .product-category-card .thumblist {
+  display: table-cell;
+  padding: 15px;
+  vertical-align: middle;
+}
+.product-category-card .main-img > img, .product-category-card .thumblist > img {
+  display: block;
+  width: 100%;
+}
+.product-category-card .main-img {
+  width: 65%;
+  padding-right: 10px;
+}
+.product-category-card .thumblist {
+  width: 35%;
+  padding-left: 10px;
+}
+.product-category-card .thumblist > img:first-child {
+  margin-bottom: 6px;
+}
+.product-category-card .product-category-card-meta {
+  display: block;
+  padding-bottom: 9px;
+  color: rgba(140, 140, 140, .75);
+  font-size: 11px;
+  font-weight: 600;
+}
+.product-category-card .product-category-card-title {
+  margin-bottom: 0;
+  transition: color 0.3s;
+  color: #343b43;
+  font-size: 18px;
+}
+.product-category-card:hover .product-category-card-title {
+  color: #ac32e4;
+}
+.product-gallery {
+  position: relative;
+  padding: 45px 15px 0;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+}
+.product-gallery .gallery-item::before {
+  display: none !important;
+}
+.product-gallery .gallery-item::after {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, .26);
+}
+.product-gallery .video-player-button, .product-gallery .badge {
+  position: absolute;
+  z-index: 5;
+}
+.product-gallery .badge {
+  top: 15px;
+  left: 15px;
+  margin-left: 0;
+}
+.product-gallery .video-player-button {
+  top: 0;
+  right: 15px;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+}
+.product-gallery .product-thumbnails {
+  display: block;
+  margin: 0 -15px;
+  padding: 12px;
+  border-top: 1px solid #e7e7e7;
+  list-style: none;
+  text-align: center;
+}
+.product-gallery .product-thumbnails > li {
+  display: inline-block;
+  margin: 10px 3px;
+}
+.product-gallery .product-thumbnails > li > a {
+  display: block;
+  width: 94px;
+  transition: all 0.25s;
+  border: 1px solid transparent;
+  background-color: #fff;
+  opacity: 0.75;
+}
+.product-gallery .product-thumbnails > li:hover > a {
+  opacity: 1;
+}
+.product-gallery .product-thumbnails > li.active > a {
+  border-color: #ac32e4;
+  cursor: default;
+  opacity: 1;
+}
+.product-meta {
+  padding-bottom: 10px;
+}
+.product-meta > a, .product-meta > i {
+  display: inline-block;
+  margin-right: 5px;
+  color: rgba(140, 140, 140, .75);
+  vertical-align: middle;
+}
+.product-meta > i {
+  margin-top: 2px;
+}
+.product-meta > a {
+  transition: color 0.25s;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.product-meta > a:hover {
+  color: #8c8c8c;
+}
+.cart-item {
+  position: relative;
+  margin-bottom: 30px;
+  padding: 0 50px 0 10px;
+  background-color: #fff;
+  box-shadow: 0 12px 20px 1px rgba(7, 58, 2, 0.09);
+}
+.cart-item .cart-item-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #8c8c8c;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.cart-item .cart-item-product {
+  display: table;
+  width: 510px;
+  text-decoration: none;
+}
+.cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+  display: table-cell;
+  vertical-align: top;
+}
+.cart-item .cart-item-product-thumb {
+  width: 110px;
+}
+.cart-item .cart-item-product-thumb > img {
+  display: block;
+  width: 100%;
+}
+.cart-item .cart-item-product-info {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.cart-item .cart-item-product-info > span {
+  display: block;
+  margin-bottom: 2px;
+  color: #404040;
+  font-size: 12px;
+}
+.cart-item .cart-item-product-title {
+  margin-bottom: 8px;
+  transition: color, 0.3s;
+  color: #343b43;
+  font-size: 16px;
+  font-weight: bold;
+}
+.cart-item .cart-item-product:hover .cart-item-product-title {
+  color: #06a413;
+}
+.cart-item .count-input {
+  display: inline-block;
+  width: 85px;
+}
+.cart-item .remove-item {
+  right: -10px !important;
+}
+@media (max-width: 991px) {
+  .cart-item {
+    padding-right: 30px;
+  }
+  .cart-item .cart-item-product {
+    width: auto;
+  }
+}
+@media (max-width: 768px) {
+  .cart-item {
+    padding-right: 10px;
+    padding-bottom: 15px;
+  }
+  .cart-item .cart-item-product {
+    display: block;
     width: 100%;
+    text-align: center;
+  }
+  .cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+    display: block;
+  }
+  .cart-item .cart-item-product-thumb {
+    margin: 0 auto 10px;
+  }
+  .cart-item .cart-item-product-info {
+    padding-left: 0;
+  }
+  .cart-item .cart-item-label {
+    margin-bottom: 8px;
+  }
 }
-.col-2, .col{
-    padding: 0 1vh;
+.comparison-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
 }
-a{
-    padding: 0 1vh;
+.comparison-table table {
+  min-width: 750px;
+  table-layout: fixed;
 }
-.close{
-    margin-left: auto;
-    font-size: 0.7rem;
+.comparison-table .comparison-item {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 13px 12px 18px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
 }
-img{
-    width: 3.5rem;
+.comparison-table .comparison-item .comparison-item-thumb {
+  display: block;
+  width: 80px;
+  margin-right: auto;
+  margin-bottom: 12px;
+  margin-left: auto;
 }
-.back-to-shop{
-    margin-top: 4.5rem;
+.comparison-table .comparison-item .comparison-item-thumb > img {
+  display: block;
+  width: 100%;
 }
-h5{
-    margin-top: 4vh;
+.comparison-table .comparison-item .comparison-item-title {
+  display: block;
+  margin-bottom: 14px;
+  transition: color 0.25s;
+  color: #404040;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
 }
-hr{
-    margin-top: 1.25rem;
+.comparison-table .comparison-item .comparison-item-title:hover {
+  color: #ac32e4;
 }
-form{
-    padding: 2vh 0;
+.remove-item {
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  padding-left: 1px;
+  border-radius: 50%;
+  background-color: #ff5252;
+  color: #fff;
+  line-height: 23px;
+  text-align: center;
+  box-shadow: 0 3px 12px 0 rgba(255, 82, 82, .5);
+  cursor: pointer;
 }
-select{
-    border: 1px solid rgba(0, 0, 0, 0.137);
-    padding: 1.5vh 1vh;
-    margin-bottom: 4vh;
-    outline: none;
-    width: 100%;
-    background-color: rgb(247, 247, 247);
+.card-wrapper {
+  margin: 30px -15px;
 }
-input{
-    border: 1px solid rgba(0, 0, 0, 0.137);
-    padding: 1vh;
-    margin-bottom: 4vh;
-    outline: none;
-    width: 100%;
-    background-color: rgb(247, 247, 247);
+@media (max-width: 576px) {
+  .card-wrapper .jp-card-container {
+    width: 260px !important;
+  }
+  .card-wrapper .jp-card {
+    min-width: 250px !important;
+  }
 }
-input:focus::-webkit-input-placeholder
-{
-      color:transparent;
-}
-.btn{
-    background-color: #000;
-    border-color: #000;
-    color: white;
-    width: 100%;
-    font-size: 0.7rem;
-    margin-top: 4vh;
-    padding: 1vh;
-    border-radius: 0;
-}
-.btn:focus{
-    box-shadow: none;
-    outline: none;
-    box-shadow: none;
-    color: white;
-    -webkit-box-shadow: none;
-    -webkit-user-select: none;
-    transition: none; 
-}
-.btn:hover{
-    color: white;
-}
-a{
-    color: black; 
-}
-a:hover{
-    color: black;
-    text-decoration: none;
-}
- #code{
-    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.253) , rgba(255, 255, 255, 0.185)), url("https://img.icons8.com/small/16/000000/long-arrow-right.png");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: center;
-} */
+
 </style>
