@@ -133,7 +133,7 @@
                                                     <div class="media-body  my-auto">
                                                         <div class="row ">
                                                             <!-- 상품명 -->
-                                                            <div class="col"><p class="mb-0"><b>{{ cart.p_name }}</b></p><small class="text-muted"> {{ cart.p_price }} 원</small></div>
+                                                            <div class="col"><p class="mb-0"><b>{{ cart.p_name }}</b></p><small class="text-muted"> {{ Number(cart.p_price).toLocaleString() }} 원</small></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -141,7 +141,7 @@
                                             <!-- 주문 개수 -->
                                             <div class=" pl-0 flex-sm-col col-auto  my-auto"> <p class="boxed">{{ cart.o_count }}</p></div>
                                             <!-- 가격 -->
-                                            <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{ cart.o_total_price }} 원</b></p></div>
+                                            <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{ Number(cart.o_total_price).toLocaleString() }} 원</b></p></div>
                                         </div>
                                         <hr class="my-2">
                                     </div>      <!-- <div class="ordercontent" v-for="i in 2" :key="i" >-->  
@@ -152,15 +152,15 @@
                                         <div class="col">
                                             <div class="row justify-content-between">
                                                 <div class="col-4"><p class="mb-1"><b>주문 금액</b></p></div>
-                                                <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ orderAmount }} 원</b></p></div>
+                                                <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ Number(orderAmount).toLocaleString() }} 원</b></p></div>
                                             </div>
                                             <div class="row justify-content-between">
                                                 <div class="col-4"><p class="mb-1"><b>배송비</b></p></div>
-                                                <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ shipping }} 원</b></p></div>
+                                                <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ Number(shipping).toLocaleString()}} 원</b></p></div>
                                             </div>
                                             <div class="row justify-content-between">
                                                 <div class="col-4"><p ><b>총 금액</b></p></div>
-                                                <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{ totalAmount }} 원</b></p> </div>
+                                                <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{ Number(totalAmount).toLocaleString() }} 원</b></p> </div>
                                             </div><hr class="my-0">
                                         </div>
                                     </div>

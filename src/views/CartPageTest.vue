@@ -6,24 +6,31 @@
             <aside class="col-lg-9">
                 <div class="card">
                     <div class="">
-                        <div id="cart-item" v-for="i in 6" :key="i">
+                        <div id="cart-item" v-for="cart in cart_info" :key="cart.p_name">
                             <div class="cart-item d-md-flex justify-content-between"><span class="remove-item"><font-awesome-icon icon="fa fa-times" /></span>
                                 <div class="px-4 my-3">
-                                    <a class="cart-item-product" href="#">
-                                        <div class="cart-item-product-thumb"><img src="https://attach.choroc.com/web/goods/1/img1/006964_20210414111458.jpg" alt="Product"></div>
-                                        <div class="cart-item-product-info">
-                                            <h4 class="cart-item-product-title">Canon EOS M50 Mirrorless Casdfsdfdsffmera</h4><span><strong>Type:</strong> Mirrorless</span><span><strong>Color:</strong> Black</span>
-                                        </div>
-                                    </a>
+                                    <router-link :to="{name: 'product', params: {name: cart.p_name, price: cart.p_price, img: cart.p_img, category: cart.c_name}}" class="cart-item-product">
+                                          <div class="cart-item-product-thumb"><img v-bind:src="cart.p_img" alt="Product"></div>
+                                          <div class="cart-item-product-info">
+                                              <h4 class="cart-item-product-title">{{ cart.p_name }}</h4><span><strong>{{ Number(cart.p_price).toLocaleString() }} 원</strong></span>
+                                          </div>                                  
+                                    </router-link>
+                                      <!-- <a class="cart-item-product" href="#">
+                                          <div class="cart-item-product-thumb"><img v-bind:src="cart.p_img" alt="Product"></div>
+                                          <div class="cart-item-product-info">
+                                              <h4 class="cart-item-product-title">{{ cart.p_name }}</h4><span><strong>{{ Number(cart.p_price).toLocaleString() }} 원</strong></span>
+                                          </div>
+                                      </a> -->
                                     </div>
                                     <div class="px-3 my-3 text-center">
                                         <div class="cart-item-label">수량</div>
                                         <div class="count-input">
-                                        <input type="number" class="form-control form-control-lg text-center" min="1" value="1">
+                                          <!-- <input type="number" class="form-control form-control-lg text-center" min="1" v-model="cart.o_count" readonly/> -->
+                                          <input type="text" class="form-control form-control-lg text-center" min="1" v-model="cart.o_count" readonly/>
                                         </div>
                                     </div>
                                     <div class="px-3 my-3 text-center">
-                                        <div class="cart-item-label">구매금액</div><span class="text-xl font-weight-medium">$910.00</span>
+                                        <div class="cart-item-label">구매금액</div><span class="text-xl font-weight-medium">{{ Number(cart.o_total_price).toLocaleString() }} 원</span>
                                     </div>
 
                                 </div>
@@ -35,24 +42,48 @@
                 <div class="card">
                     <div class="card-body">
                         <dl class="dlist-align">
-                            <dt>Total price:</dt>
-                            <dd class="text-right ml-3">$69.97</dd>
+                            <dt>선택 주문금액: &nbsp;</dt>
+                            <dd class="text-right ml-3">{{ Number(orderAmount).toLocaleString() }} 원</dd>
                         </dl>
                         <dl class="dlist-align">
-                            <dt>Discount:</dt>
-                            <dd class="text-right text-danger ml-3">- $10.00</dd>
+                            <dt>배송비: &nbsp;</dt>
+                            <dd class="text-right ml-3">{{ Number(shipping).toLocaleString() }} 원</dd>
                         </dl>
                         <dl class="dlist-align">
-                            <dt>Total:</dt>
-                            <dd class="text-right text-dark b ml-3"><strong>$59.97</strong></dd>
+                            <dt>총 주문금액: &nbsp;</dt>
+                            <dd class="text-right text-dark b ml-3"><strong>{{ Number(totalAmount).toLocaleString() }} 원</strong></dd>
                         </dl>
                         <hr> 
-                        <a href="#" class="btn btn-success btn-square btn-main mt-2" data-abc="true">주문하기</a>
-                        <a href="/" class="btn btn-primary btn-square btn-main mt-2" data-abc="true"> 쇼핑 계속하기 </a>                        
+                        <router-link v-show="this.$store.state.toCartPage" to="/payments" class="btn btn-success btn-square btn-main mt-2" data-abc="true">주문하기</router-link> 
+                        <a href="/" class="btn btn-primary btn-square btn-main mt-2" data-abc="true"> 쇼핑 계속하기 </a>                                          
                     </div>
                 </div>
             </aside>
         </div>
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Launch demo modal
+          </button>
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  Woohoo, you're reading this text in a modal!
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Modal -->
     </div>
 </section> 
 
@@ -108,6 +139,92 @@
     </div> -->
 
 </template>
+
+
+<script>
+
+export default {
+   data() {
+        return {
+            name: '',
+            address1: '',
+            address2: '',
+            address3: '',
+            email: '',
+            bCartInfo: {},
+            tempInfo: '',
+            buyer_info: [],
+            cart_info: [],
+            paymentInfo: [],
+            orderAmount: 2000,
+            shipping: 2500,
+            totalAmount: 0
+        }
+    },
+    mounted() {
+        // this.emitter.on('cart', (name)=> {
+        //     this.name = name
+        // })
+        // this.emitter.on('cartInfo', (bInfo)=>{
+        //     this.bCartInfo = bInfo
+        //     this.name = bInfo.b_name
+        //     this.address1 = bInfo.b_address1
+        //     this.address2 = bInfo.b_address2
+        //     this.address3 = bInfo.b_address3
+        //     this.email = bInfo.b_email
+        // })
+        
+        
+        
+    },
+    created() {
+        this.getCartInfo()
+    },
+    methods: {
+        getCartInfo() {
+
+            this.getPaymentInfo(this.$store.state.bid)
+
+        },async getPaymentInfo(bId) {
+            await this.$axios.post(this.$serverUrl+'/payment/paymentInfo', {
+                b_id: bId
+            }).then((res) => {
+                // console.log('fgsfdf'+res)
+
+                this.paymentInfo = res.data
+                this.buyer_info = this.paymentInfo.bInfo
+                this.cart_info = this.paymentInfo.cartList
+                // console.log(this.cart_info[0].p_number)
+                this.orderAmount = 0
+                for (var i = 0; i < this.cart_info.length; i++) {
+                    
+                    this.orderAmount += this.cart_info[i].o_total_price
+                }
+                this.totalAmount = this.orderAmount + this.shipping
+                // this.buyerInfo=res.data
+                // console.log(this.buyerInfo.b_name)
+                // if(this.buyerInfo.b_name === undefined){
+
+                // }
+                // else {
+                    
+                // }
+            }).catch((err) => {
+                console.log(err)
+                if (err.message.indexOf('Network Error') > -1) {
+                alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+                }
+            })
+
+        }, autoHyphen(target) {
+            target.value = target.value
+            .replace(/[^0-9]/g, '')
+            .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+        }
+
+    }
+}
+</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
