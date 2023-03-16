@@ -4,12 +4,28 @@
             <div class="col-xl-10">
                 <div class="card shadow-lg ">
                     <div class="row p-2 mt-3 justify-content-between mx-sm-2">
-
+                        <!-- <div class="col">
+                            <p class="text-muted space mb-0 shop"> Shop No.78618K</p> 
+                            <p class="text-muted space mb-0 shop">Store Locator</p>   
+                        </div> -->
+                        <!-- <div class="col">
+                            <div class="row justify-content-start ">
+                                <div class="col">
+                                    <img class="irc_mi img-fluid cursor-pointer " src="https://i.imgur.com/jFQo2lD.png"  width="70" height="70" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <img class="irc_mi img-fluid bell" src="https://i.imgur.com/uSHMClk.jpg" width="30" height="30"  >
+                        </div> -->
                     </div>
                     <div class="row  mx-auto justify-content-center text-center">
                         <div class="col-12 mt-3 ">
                             <nav aria-label="breadcrumb" class="second ">
                                 <ol class="breadcrumb indigo lighten-6 first  ">
+                                    <!-- <li class="breadcrumb-item font-weight-bold "><a class="black-text text-uppercase " href="#"><span class="mr-md-3 mr-1">BACK TO SHOP</span></a><i class="fa fa-angle-double-right " aria-hidden="true"></i></li>
+                                    <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase" href="#"><span class="mr-md-3 mr-1">SHOPPING BAG</span></a><i class="fa fa-angle-double-right text-uppercase " aria-hidden="true"></i></li> -->
+                                    <!-- <li class="breadcrumb-item font-weight-bold"><a class="black-text text-uppercase active-2" href="#"><span class="mr-md-3 mr-1" style="font-size: large;">결제 페이지</span></a></li> -->
                                     <h2 class="card-title ">결제 상세</h2>
                                 </ol>
                             </nav>
@@ -26,45 +42,45 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row justify-content-between">
-                                       
+                                        <!-- <div class="col-auto mt-0"><p><b>{{ buyer_info }}</b></p></div> -->
                                         <div>
                                             <div class="mt-4 mb-4">
                                             <!-- <h6 class="text-uppercase">배송지</h6> -->
                                                 <div class="row mt-3">
                                                     <div class="col-md-6">
-                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_name"> <span>이름</span> </div>                                     
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_name" readonly> <span>이름</span> </div>                                     
                                                     </div>
                                                     
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-md-6">
-                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address1"> <span>우편번호</span> </div>
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address1" readonly> <span>우편번호</span> </div>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">
                                                     <div class="col-md-12">
-                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address2"> <span>주소</span> </div>
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address2" readonly> <span>주소</span> </div>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">                                              
                                                     <div class="col-md-12">
-                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address3"> <span>상세주소</span> </div>
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address3" readonly> <span>상세주소</span> </div>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">                                              
                                                     <div class="col-md-12">
-                                                        <div class="inputbox mt-3 mr-2"> <input type="email" name="name" class="form-control" v-model="buyer_info.b_email"> <span>이메일</span> </div>
+                                                        <div class="inputbox mt-3 mr-2"> <input type="email" name="name" class="form-control" v-model="buyer_info.b_email" readonly> <span>이메일</span> </div>
                                                     </div>
                                                 </div>
                                                 <div class="row mt-2">                                              
                                                     <div class="col-md-12">
-                                                        <div class="inputbox mt-3 mr-2"> <input type="text" maxlength="13" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');" name="name" class="form-control" v-model="buyer_info.b_phone"> <span>연락처</span> </div>
+                                                        <div class="inputbox mt-3 mr-2"> <input type="text" maxlength="13" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');" name="name" class="form-control" v-model="buyer_info.b_phone" readonly> <span>연락처</span> </div>
                                                     </div>
                                                 </div>
     
                                             </div>
                                         </div>
-                                        
+                                        <!-- <div class="col-auto"><p><b>BBBootstrap@gmail.com</b> </p></div> -->
                                     </div>
                                     <div class="row mt-4">
                                         <div class="col"><p class="text-muted mb-2">결제방식</p><hr class="mt-0"></div>
@@ -104,7 +120,7 @@
                         <div class="col-md-5">
                             <div class="card border-0 ">
                                 <div class="card-header pb-0">
-                                    <p class="card-text text-muted mt-md-4  mb-2 space">주문 내용</p>
+                                    <p class="card-text text-muted mt-md-4  mb-2 space">주문 내용 <!--<span class=" small text-muted ml-2 cursor-pointer">EDIT SHOPPING BAG</span>--> </p>
                                     <hr class="my-2">
                                 </div>
                                 <div class="card-body pt-0">
@@ -128,7 +144,7 @@
                                             <div class=" pl-0 flex-sm-col col-auto  my-auto "><p><b>{{ cart.o_total_price }} 원</b></p></div>
                                         </div>
                                         <hr class="my-2">
-                                    </div>      <!-- <div class="ordercontent" v-for="cart in cart_info" :key="cart.p_name" > -->  
+                                    </div>      <!-- <div class="ordercontent" v-for="i in 2" :key="i" >-->  
     
     
                                     <!-- 총 합계 -->
@@ -182,6 +198,19 @@
             }
         },
         mounted() {
+            // this.emitter.on('cart', (name)=> {
+            //     this.name = name
+            // })
+            // this.emitter.on('cartInfo', (bInfo)=>{
+            //     this.bCartInfo = bInfo
+            //     this.name = bInfo.b_name
+            //     this.address1 = bInfo.b_address1
+            //     this.address2 = bInfo.b_address2
+            //     this.address3 = bInfo.b_address3
+            //     this.email = bInfo.b_email
+            // })
+            
+            
             
         },
         created() {
@@ -190,13 +219,13 @@
         methods: {
             getCartInfo() {
     
-                this.getPaymentInfo(sessionStorage.getItem('buyer_info'))
+                this.getPaymentInfo(this.$store.state.bid)
     
             },async getPaymentInfo(bId) {
                 await this.$axios.post(this.$serverUrl+'/payment/paymentInfo', {
                     b_id: bId
                 }).then((res) => {
-
+                    // console.log('fgsfdf'+res)
     
                     this.paymentInfo = res.data
                     this.buyer_info = this.paymentInfo.bInfo
@@ -208,7 +237,14 @@
                         this.orderAmount += this.cart_info[i].o_total_price
                     }
                     this.totalAmount = this.orderAmount + this.shipping
-
+                    // this.buyerInfo=res.data
+                    // console.log(this.buyerInfo.b_name)
+                    // if(this.buyerInfo.b_name === undefined){
+    
+                    // }
+                    // else {
+                        
+                    // }
                 }).catch((err) => {
                     console.log(err)
                     if (err.message.indexOf('Network Error') > -1) {
@@ -361,6 +397,7 @@
     position: relative;
     margin-bottom: 20px;
     width: 100%
+    
     }
     
     .inputbox span {
@@ -398,6 +435,16 @@
     .inputbox input:valid~span {
     transform: translateX(-0px) translateY(-15px);
     font-size: 12px
+    }
+    
+    .inputbox input:invalid~span {
+    transform: translateX(-0px) translateY(-15px);
+    font-size: 12px
+    }
+    
+    .inputbox input:read-only~span {
+    transform: translateX(-0px) translateY(-15px);
+    font-size: 12px;
     }
     
     </style>

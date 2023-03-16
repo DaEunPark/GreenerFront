@@ -47,6 +47,11 @@ const routes = [
     path: '/paymentspagetest',
     name: 'PPtest',
     component: () => import('../views/PaymentsPageTest.vue')
+   },
+   {
+    path: '/cartpagetest',
+    name: 'CPtest',
+    component: () => import('../views/CartPageTest.vue')
    }
 ]
 

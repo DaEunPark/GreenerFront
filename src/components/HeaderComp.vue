@@ -34,7 +34,7 @@
           </span>
           <span>
             <router-link v-show="this.$store.state.toLoginPage" to="/login"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
-            <router-link v-show="this.$store.state.toCartPage" to="/paymentspagetest"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
+            <router-link v-show="this.$store.state.toCartPage" to="/payments"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
             <!-- <a href="#" v-show="toCartPage" @click="goToCart()"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></a> -->
           </span>
           <span>
