@@ -2,8 +2,8 @@
   <header>
     <nav class="fixed-top">
       <div class="container">
-        <p class='right status' v-if="loggedIn" id='welcome'>{{name}} 님 반갑습니다. [<a href='#'>로그아웃</a>]</p>
-        <p class='right status' v-else id='welcome'>로그인해야지?</p>
+        <p class='right status' v-if="this.$store.state.loggedIn" id='welcome'>{{this.$store.state.name}}님 반갑습니다. [<a class="logout" @click="logout">로그아웃</a>]</p>
+        <p class='right status' v-else id='welcome'>&nbsp;</p>
         <router-link class='left' to="/"><img id="logo" src="../assets/green_icon.png" alt="logo"/></router-link>
         <div class='left' id="search_box">
           <span id="search">
@@ -29,12 +29,12 @@
         </div>
         <div class='icons right'>
           <span>
-            <router-link v-show='toMyPage' to="/MyPage"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-mypage.svg" alt="login"/></router-link>
-            <router-link v-show='toLoginPage' to="/login"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-mypage.svg" alt="login"/></router-link>
+            <router-link v-show='this.$store.state.toMyPage' to="/MyPage"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-mypage.svg" alt="login"/></router-link>
+            <router-link v-show='this.$store.state.toLoginPage' to="/login"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-mypage.svg" alt="login"/></router-link>
           </span>
           <span>
-            <router-link v-show="toLoginPage" to="/login"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
-            <router-link v-show="toCartPage" cartInfo=bInfo to="/paymentspagetest"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
+            <router-link v-show="this.$store.state.toLoginPage" to="/login"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
+            <router-link v-show="this.$store.state.toCartPage" to="/paymentspagetest"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
             <!-- <a href="#" v-show="toCartPage" @click="goToCart()"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></a> -->
           </span>
           <span>
@@ -55,34 +55,12 @@ export default {
     return {
       rank: 1,
       title:'검색어',
-      rankArr: ['가오리', '나비', '다람쥐', '라면', '마술사', '바구니', '사진기', '아저씨', '자전거', '차키'],
-      loggedIn: false, // 마이페이지 버튼 경로 설정(기본값 : false)
-      toMyPage: false, // 마이페이지 버튼 경로 설정(기본값 : false)
-      toLoginPage: true, // 로그인 상태 표시 설정(기본값 : true)
-      toCartPage: false,
-      // 마이페이지 버튼 눌렀을 때, 로그인이 되어 있는 상태면 마이페이지로, 로그인이 안되어있는 상태면 로그인 페이지로 이동
-      name:'',
-      bInfo: []
+      rankArr: ['가오리', '나비', '다람쥐', '라면', '마술사', '바구니', '사진기', '아저씨', '자전거', '차키']
     }
   },
   mounted(){
     this.title=this.rankArr[Number(this.rank)-1]
     this.rankSetter()
-    // this.emitter.on('trans', (name)=>{
-    //   this.name=name
-    //   this.loggedIn = true
-    //   this.toMyPage = true
-    //   this.toLoginPage = false
-    //   this.toCartPage = true
-    // })
-    this.emitter.on('transInfo', (buyerInfo)=> {
-      this.name = buyerInfo.b_name
-      this.bInfo = buyerInfo
-      this.loggedIn = true
-      this.toMyPage = true
-      this.toLoginPage = false
-      this.toCartPage = true
-    })
   },
   methods: {
     rankSetter(){
@@ -98,16 +76,18 @@ export default {
     hideAllRanks(){
       document.getElementById("all_rank").style.display='none'
     },
-    goToCart() {
-      this.emitter.emit('cart', this.name)
-      this.emitter.emit('cartInfo', this.bInfo)
-      this.$router.replace('/paymentspagetest')
+    logout () {
+      this.$store.commit('logoutPlease')
+      this.$router.replace('/')
     }
   }
 }
 </script>
 
 <style scoped>
+  .logout {
+    cursor: pointer;
+  }
   .icons {
     margin-top: 20px;
     justify-content: space-between;

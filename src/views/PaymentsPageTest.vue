@@ -48,33 +48,33 @@
                                         <!-- <h6 class="text-uppercase">배송지</h6> -->
                                             <div class="row mt-3">
                                                 <div class="col-md-6">
-                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_name"> <span>이름</span> </div>                                     
+                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_name" readonly> <span>이름</span> </div>                                     
                                                 </div>
                                                 
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="col-md-6">
-                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address1"> <span>우편번호</span> </div>
+                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address1" readonly> <span>우편번호</span> </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">
                                                 <div class="col-md-12">
-                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address2"> <span>주소</span> </div>
+                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address2" readonly> <span>주소</span> </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">                                              
                                                 <div class="col-md-12">
-                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address3"> <span>상세주소</span> </div>
+                                                    <div class="inputbox mt-3 mr-2"> <input type="text" name="name" class="form-control" v-model="buyer_info.b_address3" readonly> <span>상세주소</span> </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">                                              
                                                 <div class="col-md-12">
-                                                    <div class="inputbox mt-3 mr-2"> <input type="email" name="name" class="form-control" v-model="buyer_info.b_email"> <span>이메일</span> </div>
+                                                    <div class="inputbox mt-3 mr-2"> <input type="email" name="name" class="form-control" v-model="buyer_info.b_email" readonly> <span>이메일</span> </div>
                                                 </div>
                                             </div>
                                             <div class="row mt-2">                                              
                                                 <div class="col-md-12">
-                                                    <div class="inputbox mt-3 mr-2"> <input type="text" maxlength="13" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');" name="name" class="form-control" v-model="buyer_info.b_phone"> <span>연락처</span> </div>
+                                                    <div class="inputbox mt-3 mr-2"> <input type="text" maxlength="13" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, '$1-$2-$3');" name="name" class="form-control" v-model="buyer_info.b_phone" readonly> <span>연락처</span> </div>
                                                 </div>
                                             </div>
 
@@ -219,7 +219,7 @@ export default {
     methods: {
         getCartInfo() {
 
-            this.getPaymentInfo(sessionStorage.getItem('buyer_info'))
+            this.getPaymentInfo(this.$store.state.bid)
 
         },async getPaymentInfo(bId) {
             await this.$axios.post(this.$serverUrl+'/payment/paymentInfo', {
@@ -397,6 +397,7 @@ p{
 position: relative;
 margin-bottom: 20px;
 width: 100%
+
 }
 
 .inputbox span {
@@ -434,6 +435,16 @@ font-size: 12px
 .inputbox input:valid~span {
 transform: translateX(-0px) translateY(-15px);
 font-size: 12px
+}
+
+.inputbox input:invalid~span {
+transform: translateX(-0px) translateY(-15px);
+font-size: 12px
+}
+
+.inputbox input:read-only~span {
+transform: translateX(-0px) translateY(-15px);
+font-size: 12px;
 }
 
 </style>
