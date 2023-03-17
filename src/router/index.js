@@ -42,22 +42,13 @@ const routes = [
    {
     path: '/payments',
     name: 'PaymentPage',
-    component: PaymentsPage
+    component: PaymentsPage,
+    props: true
    },
    {
     path: '/cart',
     name: 'CartPage',
     component: CartPage
-   },
-   {
-    path: '/paymentspagetest',
-    name: 'PPtest',
-    component: () => import('../views/PaymentsPageTest.vue')
-   },
-   {
-    path: '/cartpagetest',
-    name: 'CPtest',
-    component: () => import('../views/CartPageTest.vue')
    }
 ]
 

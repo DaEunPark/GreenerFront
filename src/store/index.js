@@ -34,6 +34,7 @@ export default createStore({
       
     },
     logoutPlease (state) {
+      state.bid = 'bid'
       state.loggedIn = false
       state.toMyPage = false
       state.toCartPage = false
