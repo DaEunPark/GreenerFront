@@ -82,59 +82,37 @@
                                     </div>
                                     <!-- <div class="col-auto"><p><b>BBBootstrap@gmail.com</b> </p></div> -->
                                 </div>
-                                <div class="row mt-4">
-                                    <div class="col"><p class="text-muted mb-2">결제방식</p><hr class="mt-0"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="NAME" class="small text-muted mb-1">카드 이름</label>
-                                    <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="홍길동의 카드">
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col-sm-3 pr-sm-2">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">카드 번호</label>
-                                            <input type="text" class="form-control form-control-sm" name="card1" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                <div class="paymentwith">
+                                    <div class="row mt-4">
+                                        <div class="col"><p class="text-muted mb-2">결제방식</p><hr class="mt-0"></div>
+                                    </div>
+                                    
+                                        <nav>
+                                            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                                                    간단 카드결제
+                                                </button>
+                                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                                                    일반 결제방식
+                                                </button>
+                                                <button class="nav-link active" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                                    기타 결제방식
+                                                </button>
+                                            </div>
+                                        </nav>
+                                        <div class="tab-content" id="nav-tabContent">
+                                            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                <simple-card></simple-card>
+                                            </div>
+                                            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                <standard-pay></standard-pay>
+                                            </div>
+                                            <div class="tab-pane fade show active" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                                <extra-pay></extra-pay>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1"> </label>
-                                            <input type="password" class="form-control form-control-sm" name="card2" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1"> </label>
-                                            <input type="password" class="form-control form-control-sm" name="card3" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1"> </label>
-                                            <input type="text" class="form-control form-control-sm" name="card4" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row no-gutters">
-                                    <div class="col-sm-6 pr-sm-2">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">만료기한</label>
-                                            <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" maxlength="5" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{0,2})(\d{0,2})$/g, '$1/$2').replace(/(\-{1,2})$/g, '');" aria-describedby="helpId" placeholder="06/21">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label for="NAME" class="small text-muted mb-1">CVC</label>
-                                            <input type="text" class="form-control form-control-sm" maxlength="3" name="NAME" id="NAME" aria-describedby="helpId" placeholder="183">
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="row mb-md-5">
-                                    <div class="col">
-                                        <button type="button" name="" id="" class="btn  btn-lg btn-block "> &nbsp; 카드 정보 입력 완료 &nbsp; </button>
-                                    </div>
-                                </div>    
+                                    
+                                </div><!-- <div class="paymentwith"> -->
                             </div>
                         </div>
                     </div>
@@ -205,7 +183,11 @@
 
 <script>
 import Swal from 'sweetalert2'
+import SimpleCard from '../components/PayWithSimpleCard.vue'
+import ExtraPay from '../components/PayWithExtra.vue'
+import StandardPay from '../components/PayWithStandard.vue'
 export default {
+    components: {SimpleCard, ExtraPay, StandardPay},
     // paycart: 0,
     // props: {
     //     paycart: {
@@ -506,6 +488,25 @@ font-size: 12px
 transform: translateX(-0px) translateY(-15px);
 font-size: 12px;
 }
+
+.inputbox input:read-only {
+    color: rgb(61, 95, 73);
+}
+
+.inputbox input::placeholder {
+    color: rgb(149, 165, 121);
+}
+
+.nav-tabs .nav-link {
+  color: rgb(101, 107, 103) !important;
+}
+
+.nav-tabs .nav-link.active {
+  color: rgb(40, 170, 138) !important;
+  font-weight: bolder;
+}
+
+
 
 </style>
 
