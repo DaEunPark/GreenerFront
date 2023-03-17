@@ -89,9 +89,31 @@
                                         <label for="NAME" class="small text-muted mb-1">카드 이름</label>
                                         <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" placeholder="홍길동의 카드">
                                     </div>
-                                    <div class="form-group">
-                                        <label for="NAME" class="small text-muted mb-1">카드 번호</label>
-                                        <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" aria-describedby="helpId" maxlength="19" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{0,4})(\d{0,4})(\d{0,4})(\d{0,4})$/, '$1-$2-$3-$4').replace(/(\-{1,2})$/g, '');" placeholder="4534-5555-5555-5555">
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-3 pr-sm-2">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1">카드 번호</label>
+                                                <input type="text" class="form-control form-control-sm" name="card1" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1"> </label>
+                                                <input type="password" class="form-control form-control-sm" name="card2" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1"> </label>
+                                                <input type="password" class="form-control form-control-sm" name="card3" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1"> </label>
+                                                <input type="text" class="form-control form-control-sm" name="card4" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="row no-gutters">
                                         <div class="col-sm-6 pr-sm-2">

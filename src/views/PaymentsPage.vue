@@ -97,6 +97,19 @@
                                         <div class="col-sm-6 pr-sm-2">
                                             <div class="form-group">
                                                 <label for="NAME" class="small text-muted mb-1">만료기한</label>
+                                                <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" maxlength="4" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '');" aria-describedby="helpId" placeholder="0000"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row no-gutters">
+                                        <div class="col-sm-6 pr-sm-2">
+                                            <div class="form-group">
+                                                <label for="NAME" class="small text-muted mb-1">만료기한</label>
                                                 <input type="text" class="form-control form-control-sm" name="NAME" id="NAME" maxlength="5" oninput="javascript: this.value = this.value.replace(/[^0-9]/g, '').replace(/^(\d{0,2})(\d{0,2})$/g, '$1/$2').replace(/(\-{1,2})$/g, '');" aria-describedby="helpId" placeholder="06/21">
                                             </div>
                                         </div>
@@ -120,7 +133,7 @@
                         <div class="col-md-5">
                             <div class="card border-0 ">
                                 <div class="card-header pb-0">
-                                    <p class="card-text text-muted mt-md-4  mb-2 space">주문 내용 <!--<span class=" small text-muted ml-2 cursor-pointer">EDIT SHOPPING BAG</span>--> </p>
+                                    <p class="card-text text-muted mt-md-4  mb-2 space">주문 정보 <!--<span class=" small text-muted ml-2 cursor-pointer">EDIT SHOPPING BAG</span>--> </p>
                                     <hr class="my-2">
                                 </div>
                                 <div class="card-body pt-0">
@@ -151,7 +164,7 @@
                                     <div class="row "> 
                                         <div class="col">
                                             <div class="row justify-content-between">
-                                                <div class="col-4"><p class="mb-1"><b>주문 금액</b></p></div>
+                                                <div class="col-4"><p class="mb-1"><b>총 상품금액</b></p></div>
                                                 <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ Number(orderAmount).toLocaleString() }} 원</b></p></div>
                                             </div>
                                             <div class="row justify-content-between">
@@ -159,7 +172,7 @@
                                                 <div class="flex-sm-col col-auto"><p class="mb-1"><b>{{ Number(shipping).toLocaleString()}} 원</b></p></div>
                                             </div>
                                             <div class="row justify-content-between">
-                                                <div class="col-4"><p ><b>총 금액</b></p></div>
+                                                <div class="col-4"><p ><b>총 결제금액</b></p></div>
                                                 <div class="flex-sm-col col-auto"><p  class="mb-1"><b>{{ Number(totalAmount).toLocaleString() }} 원</b></p> </div>
                                             </div><hr class="my-0">
                                         </div>
@@ -198,19 +211,6 @@
             }
         },
         mounted() {
-            // this.emitter.on('cart', (name)=> {
-            //     this.name = name
-            // })
-            // this.emitter.on('cartInfo', (bInfo)=>{
-            //     this.bCartInfo = bInfo
-            //     this.name = bInfo.b_name
-            //     this.address1 = bInfo.b_address1
-            //     this.address2 = bInfo.b_address2
-            //     this.address3 = bInfo.b_address3
-            //     this.email = bInfo.b_email
-            // })
-            
-            
             
         },
         created() {

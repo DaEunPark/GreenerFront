@@ -7,7 +7,7 @@
       <div class="infos_n_order">
         <div class="product_info_part">
           <div class="category">
-            <a href="#">{{this.$route.params.category}}</a>
+            <a href="#">{{this.$route.params.category}}, {{ this.$route.params.pnum }}</a>
           </div>
           <p class="product_name">{{name}}</p>
           <div class="product_price">{{Number(this.price).toLocaleString()}}원</div>
@@ -24,7 +24,7 @@
             <span>{{total}}원</span>
           </div>
           <div class="btns">
-            <button class="cart">장바구니</button>
+            <button class="cart" @click="addToCart">장바구니</button>
             <button class="order">바로구매</button> <!--결제페이지로 연결-->
           </div>
         </div>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+
 export default {
   data () { 
     return {
@@ -50,6 +51,32 @@ export default {
   computed: {
     total() {
       return (this.price * this.count).toLocaleString()
+    }
+  },
+  methods: {
+    addToCart() {
+//      alert(this.$route.params.pnum);
+      this.$axios.post(this.$serverUrl+'/payment/addtocart', {
+        cart_b_id: this.$store.state.bid,
+        cart_p_number: this.$route.params.pnum,
+        cart_o_count: this.count
+      }).then((res) => {
+          // console.log('fgsfdf'+res)
+
+          var topayment = res.data
+          if (topayment == 'NO') {
+            alert('장바구니는 10개까지 담을 수 있습니다.');
+          } else {
+            this.$router.replace(topayment);
+          }
+          
+
+      }).catch((err) => {
+          console.log(err)
+          if (err.message.indexOf('Network Error') > -1) {
+          alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+          }
+      })      
     }
   }
 }
