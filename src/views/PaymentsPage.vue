@@ -89,25 +89,25 @@
                                     
                                         <nav>
                                             <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                                <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
                                                     간단 카드결제
                                                 </button>
                                                 <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
                                                     일반 결제방식
                                                 </button>
-                                                <button class="nav-link active" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                                                <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
                                                     기타 결제방식
                                                 </button>
                                             </div>
                                         </nav>
                                         <div class="tab-content" id="nav-tabContent">
-                                            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                                                 <simple-card></simple-card>
                                             </div>
                                             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                                 <standard-pay></standard-pay>
                                             </div>
-                                            <div class="tab-pane fade show active" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                                            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                                                 <extra-pay></extra-pay>
                                             </div>
                                         </div>
@@ -253,12 +253,12 @@ export default {
             .replace(/[^0-9]/g, '')
             .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
         }, deleteProductDirectPayment() {
-            this.$axios.post(this.$serverUrl+'/payment/deletethisproduct', {
-                cart_number: this.cart_info[0].cart_number,
+            this.$axios.post(this.$serverUrl+'/payment/deletebuyerproduct', {
+                cart_b_id: this.$store.state.bid,
                 cart_selected: 0
             }).then((res) => {
                 if (res.data = 'YES') {
-                this.getPaymentInfo(this.$store.state.bid)
+                    
                 }
 
             }).catch((err) => {
