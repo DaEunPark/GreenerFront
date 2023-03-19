@@ -73,9 +73,22 @@ export default {
             if (where == 'NO') {
               alert('장바구니는 10개까지 담을 수 있습니다.');
             } else if (where == 'toCart') {
+              
               const answer = confirm("장바구니에 상품이 추가되었습니다. 장바구니로 이동하겠습니까?")
               if(answer) {
                 this.$router.replace('/cart');
+              } else {
+                this.$axios.post(this.$serverUrl+'/payment/cartcount', {
+                  cart_b_id: this.$store.state.bid,
+                  cart_selected: 1
+                }).then((res) => {
+                  this.$store.commit('setHeaderCart', res.data)                  
+                }).catch((err) => {
+                    console.log(err)
+                    if (err.message.indexOf('Network Error') > -1) {
+                    alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+                    }
+                })
               }
               
             } else if (where == 'toPayment') {              

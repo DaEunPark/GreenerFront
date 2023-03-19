@@ -187,6 +187,7 @@
                   this.orderAmount = 0
                   this.totalProducts = 0
                   this.$store.commit('setHeaderCart', this.cart_info.length)
+
                   if (this.cart_info.length < 1) {
                     this.shipping = 0
                   }
