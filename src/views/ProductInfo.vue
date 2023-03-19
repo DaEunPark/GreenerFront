@@ -73,8 +73,12 @@ export default {
             if (where == 'NO') {
               alert('장바구니는 10개까지 담을 수 있습니다.');
             } else if (where == 'toCart') {
-              this.$router.replace('/cart');
-            } else if (where == 'toPayment') {
+              const answer = confirm("장바구니에 상품이 추가되었습니다. 장바구니로 이동하겠습니까?")
+              if(answer) {
+                this.$router.replace('/cart');
+              }
+              
+            } else if (where == 'toPayment') {              
               this.$router.push({name: 'PaymentPage', query: {paycart: isCart}});
             }            
 
