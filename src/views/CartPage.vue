@@ -169,6 +169,7 @@
           
       },
       created() {
+          
           this.getCartInfo()
       },
       methods: {
@@ -185,6 +186,7 @@
                   this.cart_info = this.paymentInfo.cartList
                   this.orderAmount = 0
                   this.totalProducts = 0
+                  this.$store.commit('setHeaderCart', this.cart_info.length)
                   if (this.cart_info.length < 1) {
                     this.shipping = 0
                   }
@@ -225,6 +227,7 @@
             // this.$router.push({name: 'PaymentPage', params: {paycart: 1}});
             if (this.cart_info.length > 0) {
               this.$router.push({name: 'PaymentPage', query: {paycart: 1}});
+              // this.$router.replace({name: 'PaymentPage', query: {}})
             } else {
               const answer = confirm("장바구니가 비었습니다. 메인페이지로 이동하겠습니까?")
               if(answer) {

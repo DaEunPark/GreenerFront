@@ -300,6 +300,11 @@ export default {
         } else {
             next(false)
         }
+    }, watch: {
+        '$route' (to, from) {
+            alert("to: " + to)
+            alert("from: " + from)
+        }
     }
 }
 </script>

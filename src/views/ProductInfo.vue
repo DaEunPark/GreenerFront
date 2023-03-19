@@ -80,6 +80,8 @@ export default {
               
             } else if (where == 'toPayment') {              
               this.$router.push({name: 'PaymentPage', query: {paycart: isCart}});
+              this.$router.replace({name: 'PaymentPage', query: {}})
+              // this.$router.push({name: 'PaymentPage', query: Object.assign({}, this.$route.query, {paycart: isCart})})
             }            
 
         }).catch((err) => {
