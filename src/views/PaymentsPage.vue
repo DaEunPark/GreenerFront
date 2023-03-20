@@ -169,7 +169,7 @@
                                     </div>
                                 </div>
                                 <div class="row mb-5 mt-4 ">
-                                    <div class="col-md-7 col-lg-6 mx-auto"><button type="button" class="btn btn-block btn-outline-primary btn-lg"> &nbsp; 주문하기 &nbsp; </button></div>
+                                    <div class="col-md-7 col-lg-6 mx-auto"><button type="button" class="btn btn-block btn-outline-primary btn-lg" v-bind:disabled="orderEnabled"> &nbsp; 주문하기 &nbsp; </button></div>
                                 </div>
                             </div> <!-- <div class="card-body pt-0"> -->
                         </div>
@@ -197,19 +197,10 @@ export default {
     // },
     data() {
         return {
-            name: '',
-            address1: '',
-            address2: '',
-            address3: '',
-            email: '',
-            bCartInfo: {},
-            tempInfo: '',
             buyer_info: [],
             cart_info: [],
             paymentInfo: [],
             orderAmount: 2000,
-            shipping: 2500,
-            totalAmount: 0,
             totalProducts: 0
         }
     },
@@ -218,6 +209,18 @@ export default {
     },
     created() {
         this.getCartInfo()
+    },
+    computed: {
+        totalAmount() {
+          return this.orderAmount + this.shipping;
+        },
+        shipping() {
+          return this.cart_info.length < 1 ? 0 : 2500
+        }, 
+        orderEnabled() {
+            return true
+        }
+
     },
     methods: {
         getCartInfo() {
@@ -232,7 +235,6 @@ export default {
                 this.paymentInfo = res.data
                 this.buyer_info = this.paymentInfo.bInfo
                 this.cart_info = this.paymentInfo.cartList
-
                 this.orderAmount = 0
                 this.totalProducts = 0
                 for (var i = 0; i < this.cart_info.length; i++) {
@@ -240,7 +242,7 @@ export default {
                     this.orderAmount += this.cart_info[i].o_total_price
                     this.totalProducts += this.cart_info[i].o_count
                 }
-                this.totalAmount = this.orderAmount + this.shipping
+
             }).catch((err) => {
                 console.log(err)
                 if (err.message.indexOf('Network Error') > -1) {

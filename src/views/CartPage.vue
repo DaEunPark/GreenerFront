@@ -57,7 +57,7 @@
                           </dl>
                           <hr> 
                           <!-- <router-link :to="{name: 'PaymentPage', params: {paycart: 1}}" v-show="this.$store.state.toCartPage" class="btn btn-success btn-square btn-main mt-2" data-abc="true">주문하기</router-link> -->
-                          <button @click="goToPayments()" v-show="this.$store.state.toCartPage" class="btn btn-success btn-square btn-main mt-2" data-abc="true">주문하기</button>
+                          <button @click="goToPayments()" v-show="this.$store.state.toCartPage" class="btn btn-success btn-square btn-main mt-2" data-abc="true" v-bind:disabled="enableOreder">주문하기</button>
                           <a href="/" class="btn btn-primary btn-square btn-main mt-2" data-abc="true"> 쇼핑 계속하기 </a>                                          
                       </div>
                   </div>
@@ -149,19 +149,8 @@
   export default {
      data() {
           return {
-              name: '',
-              address1: '',
-              address2: '',
-              address3: '',
-              email: '',
-              bCartInfo: {},
-              tempInfo: '',
-              buyer_info: [],
               cart_info: [],
-              paymentInfo: [],
               orderAmount: 2000,
-              shipping: 2500,
-              totalAmount: 0,
               totalProducts: 0
           }
       },
@@ -172,6 +161,18 @@
           
           this.getCartInfo()
       },
+      computed: {
+        enableOreder() {
+          return !(this.cart_info.length > 0)
+        },
+        totalAmount() {
+          return this.orderAmount + this.shipping;
+        },
+        shipping() {
+          return this.cart_info.length < 1 ? 0 : 2500
+        }
+      }
+      ,
       methods: {
           getCartInfo() {
   
@@ -184,19 +185,14 @@
               }).then((res) => {
                   this.paymentInfo = res.data
                   this.cart_info = this.paymentInfo.cartList
+                  this.$store.commit('setHeaderCart', this.cart_info.length)
                   this.orderAmount = 0
                   this.totalProducts = 0
-                  this.$store.commit('setHeaderCart', this.cart_info.length)
-
-                  if (this.cart_info.length < 1) {
-                    this.shipping = 0
-                  }
                   for (var i = 0; i < this.cart_info.length; i++) {
                       
                       this.orderAmount += this.cart_info[i].o_total_price
                       this.totalProducts += this.cart_info[i].o_count
                   }
-                  this.totalAmount = this.orderAmount + this.shipping
 
               }).catch((err) => {
                   console.log(err)

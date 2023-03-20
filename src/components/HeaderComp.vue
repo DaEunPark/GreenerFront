@@ -59,13 +59,13 @@ export default {
     return {
       rank: 1,
       title:'검색어',
-      rankArr: ['가오리', '나비', '다람쥐', '라면', '마술사', '바구니', '사진기', '아저씨', '자전거', '차키'],
-      myCartCount: 0
+      rankArr: ['가오리', '나비', '다람쥐', '라면', '마술사', '바구니', '사진기', '아저씨', '자전거', '차키']
     }
   },
   mounted(){
     this.title=this.rankArr[Number(this.rank)-1]
-    this.rankSetter()    
+    this.rankSetter()
+    
   },
   methods: {
     rankSetter(){
@@ -94,20 +94,6 @@ export default {
               
           }
 
-      }).catch((err) => {
-          console.log(err)
-          if (err.message.indexOf('Network Error') > -1) {
-          alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
-          }
-      })
-    }, async cartCount() {
-      await this.$axios.post(this.$serverUrl+'/payment/cartcount', {
-          cart_b_id: this.$store.state.bid,
-          cart_selected: 1
-      }).then((res) => {
-          console.log(res.data)
-          // this.$store.state.headerCart = res.data
-          this.$store.commit('setHeaderCart', res.data)
       }).catch((err) => {
           console.log(err)
           if (err.message.indexOf('Network Error') > -1) {

@@ -33,10 +33,20 @@
     <br/>
     <div class="row mb-md-5">
         <div class="col">
-            <button type="button" name="" id="" class="btn  btn-lg btn-block "> &nbsp; 카드 정보 입력 완료 &nbsp; </button>
+            <button type="button" name="" id="" class="btn  btn-lg btn-block " v-bind:disabled="saveCardInfo"> &nbsp; 카드 정보 입력 완료 &nbsp; </button>
         </div>
     </div> 
 </template>
+
+<script>
+    export default {
+        computed: {
+            saveCardInfo() {
+                return true
+            }
+        }
+    }
+</script>
 
 <style scoped>
 body{
@@ -94,7 +104,7 @@ a:focus,a:active {
     padding: .5rem 0.1rem;
     font-size: 1rem;
     border-radius: 0;
-    color: white !important;
+    color: rgb(231, 240, 157) !important;
     background-color: #4bb8a9;
     height: 2.8rem !important;
     border-radius: 0.2rem !important;
