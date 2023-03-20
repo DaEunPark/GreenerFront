@@ -4,7 +4,7 @@
     <div class='mostViewProd'>
       <div class="products">
         <div class="card" :key=i v-for='(product, i) in productList'>
-          <router-link :to="{name: 'product', params: {name: product.p_name, price: product.p_price, img: product.p_img, category: product.category}}">
+          <router-link :to="{name: 'product', params: {name: product.p_name, price: product.p_price, img: product.p_img, category: product.category, pnum: product.p_number}}">
             <img :src="product.p_img" class="card-img-top" alt="product">
             <div class="card-body" style="padding:0">
               <div class="card-text">
