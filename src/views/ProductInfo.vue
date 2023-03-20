@@ -24,8 +24,8 @@
             <span>{{total}}원</span>
           </div>
           <div class="btns">
-            <button class="cart">장바구니</button>
-            <button class="order">바로구매</button> <!--결제페이지로 연결-->
+            <button class="cart" @click="whereToPay(1)">장바구니</button>
+            <button class="order" @click="whereToPay(0)">바로구매</button> <!--결제페이지로 연결-->
           </div>
         </div>
 
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+
 export default {
   data () { 
     return {
@@ -50,6 +51,59 @@ export default {
   computed: {
     total() {
       return (this.price * this.count).toLocaleString()
+    }
+  },
+  methods: {
+    whereToPay(isCart) {
+      if(this.$store.state.loggedIn == false || this.$store.state.bid == 'bid' || this.$store.state.bid == '' || this.$store.state.bid == null) {
+        if(window.confirm("로그인이 필요한 서비스입니다. 로그인 페이지로 이동하시겠습니까?")) {
+          this.$router.replace('/login')
+        } else {
+
+        }
+      } else {
+          this.$axios.post(this.$serverUrl+'/payment/wheretopay', {
+          cart_b_id: this.$store.state.bid,
+          cart_p_number: this.$route.params.pnum,
+          cart_o_count: this.count,
+          cart_selected: isCart
+        }).then((res) => {
+
+            var where = res.data
+            if (where == 'NO') {
+              alert('장바구니는 10개까지 담을 수 있습니다.');
+            } else if (where == 'toCart') {
+              
+              const answer = confirm("장바구니에 상품이 추가되었습니다. 장바구니로 이동하겠습니까?")
+              if(answer) {
+                this.$router.replace('/cart');
+              } else {
+                this.$axios.post(this.$serverUrl+'/payment/cartcount', {
+                  cart_b_id: this.$store.state.bid,
+                  cart_selected: 1
+                }).then((res) => {
+                  this.$store.commit('setHeaderCart', res.data)                  
+                }).catch((err) => {
+                    console.log(err)
+                    if (err.message.indexOf('Network Error') > -1) {
+                    alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+                    }
+                })
+              }
+              
+            } else if (where == 'toPayment') {              
+              this.$router.push({name: 'PaymentPage', query: {paycart: isCart}});
+              this.$router.replace({name: 'PaymentPage', query: {}})
+              // this.$router.push({name: 'PaymentPage', query: Object.assign({}, this.$route.query, {paycart: isCart})})
+            }            
+
+        }).catch((err) => {
+            console.log(err)
+            if (err.message.indexOf('Network Error') > -1) {
+            alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+            }
+        }) 
+      }
     }
   }
 }

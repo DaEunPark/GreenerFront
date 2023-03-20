@@ -34,7 +34,10 @@
           </span>
           <span>
             <router-link v-show="this.$store.state.toLoginPage" to="/login"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
-            <router-link v-show="this.$store.state.toCartPage" to="/cart"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></router-link>
+            <router-link v-show="this.$store.state.toCartPage" to="/cart">
+              <img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/>
+              <div class="badge bg-primary rounded-pill top-left" v-show="this.$store.state.headerCart > 0">{{ this.$store.state.headerCart }}</div>
+            </router-link>
             <!-- <a href="#" v-show="toCartPage" @click="goToCart()"><img src="https://pics.gmarket.co.kr/pc/single/kr/common/image__header-cart.svg" alt="mypage"/></a> -->
           </span>
           <span>
@@ -51,6 +54,7 @@
 
 <script>
 export default {
+  
   data () {
     return {
       rank: 1,
@@ -61,6 +65,7 @@ export default {
   mounted(){
     this.title=this.rankArr[Number(this.rank)-1]
     this.rankSetter()
+    
   },
   methods: {
     rankSetter(){
@@ -77,8 +82,24 @@ export default {
       document.getElementById("all_rank").style.display='none'
     },
     logout () {
-      this.$store.commit('logoutPlease')
+      this.beforeLogout()
+      this.$store.commit('logoutPlease')      
       this.$router.replace('/')
+    }, beforeLogout() {
+      this.$axios.post(this.$serverUrl+'/payment/deletebuyerproduct', {
+          cart_b_id: this.$store.state.bid,
+          cart_selected: 0
+      }).then((res) => {
+          if (res.data = 'YES') {
+              
+          }
+
+      }).catch((err) => {
+          console.log(err)
+          if (err.message.indexOf('Network Error') > -1) {
+          alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+          }
+      })
     }
   }
 }
@@ -181,4 +202,10 @@ export default {
     color: black;
     text-decoration-color: black;
   }
+
+.top-left {
+  position: relative;
+  top: -10px;
+  left: -10px;
+}
 </style>

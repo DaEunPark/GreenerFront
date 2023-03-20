@@ -33,7 +33,7 @@ const routes = [
   { path: '/', name: 'Homepage', component: Homepage },
   { path: '/login', name: 'Login', component: () => import('../views/LoginPage.vue') },
   { path: '/MyPage', name: 'Mypage', component: () => import('../views/MyPage.vue') },
-  { path: "/product/:category/:name/:price/:img", name: "product", component: () => import('../views/ProductInfo.vue')},
+  { path: "/product/:category/:name/:price/:img/:pnum", name: "product", component: () => import('../views/ProductInfo.vue')},
   {
     path: '/cscustomer',
     name: 'CScustomer',
@@ -42,22 +42,13 @@ const routes = [
    {
     path: '/payments',
     name: 'PaymentPage',
-    component: PaymentsPage
+    component: PaymentsPage,
+    props: true
    },
    {
     path: '/cart',
     name: 'CartPage',
     component: CartPage
-   },
-   {
-    path: '/paymentspagetest',
-    name: 'PPtest',
-    component: () => import('../views/PaymentsPageTest.vue')
-   },
-   {
-    path: '/cartpagetest',
-    name: 'CPtest',
-    component: () => import('../views/CartPageTest.vue')
    }
 ]
 

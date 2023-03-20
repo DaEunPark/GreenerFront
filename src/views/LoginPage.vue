@@ -53,6 +53,17 @@ export default {
         }
         else {
           this.$store.commit('loginPlease', this.buyerInfo)
+          this.$axios.post(this.$serverUrl+'/payment/cartcount', {
+            cart_b_id: this.$store.state.bid,
+            cart_selected: 1
+          }).then((res) => {
+            this.$store.commit('setHeaderCart', res.data)                  
+          }).catch((err) => {
+              console.log(err)
+              if (err.message.indexOf('Network Error') > -1) {
+              alert('서버 통신 문제 : 잠시 후에 다시 시도해주십시오')
+              }
+          })
           this.$router.replace('/')
         }
       }).catch((err) => {
